@@ -78,18 +78,3 @@ done
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-%package common
-Summary:        Common files for apple BCE kernel modules
-BuildArch:	noarch
-
-%description
-A driver for MacBook models 2018 and newer, implementing the VHCI (required for mouse/keyboard/etc.) and audio functionality.
-
-%prep
-%setup -q -c -T -a 0
-
-%files
-
-%clean
-rm -rf $RPM_BUILD_ROOT
