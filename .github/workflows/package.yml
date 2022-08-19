@@ -43,7 +43,7 @@ jobs:
       name: "apple-bce-kmod-common"
     secrets:
       signingKey: ${{ secrets.GPG_PRIVATE_KEY }}
-  upload:
+  upload-common:
     needs:
       - sign-common
     uses: tau-OS/github-actions/.github/workflows/upload-rpm.yml@main
