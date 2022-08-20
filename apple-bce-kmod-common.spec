@@ -1,7 +1,7 @@
 Name:           apple-bce-kmod-common
 
 Version:        f93c6566f98b3c95677de8010f7445fa19f75091
-Release:        1%{?dist}.1
+Release:        1%{?dist}.2
 Summary:        Common files for apple BCE kernel modules
 
 Group:          System Environment/Kernel
