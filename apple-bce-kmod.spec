@@ -70,6 +70,7 @@ rm -rf ${RPM_BUILD_ROOT}
 
 for kernel_version in %{?kernel_versions}; do
     pushd _kmod_build_${kernel_version%%___*}
+    mkdir -p ${RPM_BUILD_ROOT}%{kmodinstdir_prefix}${kernel_version%%___*}%{kmodinstdir_postfix}
     make V=1 M=`pwd` INSTALL_MOD_PATH=${RPM_BUILD_ROOT}%{kmodinstdir_prefix}${kernel_version%%___*}%{kmodinstdir_postfix} install
     popd
 done
