@@ -8,7 +8,7 @@
 Name:           apple-bce-kmod
 
 Version:        f93c6566f98b3c95677de8010f7445fa19f75091
-Release:        1%{?dist}.2
+Release:        1%{?dist}.3
 Summary:        Apple BCE kernel modules
 
 Group:          System Environment/Kernel
@@ -61,7 +61,7 @@ done
 %build
 for kernel_version in %{?kernel_versions}; do
     pushd _kmod_build_${kernel_version%%___*}
-    make %{?_smp_mflags} -C "${kernel_version##*___}" M=`pwd` SUBDIRS=${PWD}/_kmod_build_${kernel_version%%___*} modules
+    make V=1 %{?_smp_mflags} -C "${kernel_version##*___}" M=`pwd` SUBDIRS=${PWD}/_kmod_build_${kernel_version%%___*} modules
     popd
 done
 
@@ -71,7 +71,7 @@ rm -rf ${RPM_BUILD_ROOT}
 for kernel_version in %{?kernel_versions}; do
     pushd _kmod_build_${kernel_version%%___*}
     mkdir -p ${RPM_BUILD_ROOT}%{kmodinstdir_prefix}${kernel_version%%___*}%{kmodinstdir_postfix}
-    make V=1 M=`pwd` INSTALL_MOD_PATH=${RPM_BUILD_ROOT}%{kmodinstdir_prefix}${kernel_version%%___*}%{kmodinstdir_postfix} install
+    make V=1 -C "${kernel_version##*___}" M=`pwd` INSTALL_MOD_PATH=${RPM_BUILD_ROOT}%{kmodinstdir_prefix}${kernel_version%%___*}%{kmodinstdir_postfix} modules_install
     popd
 done
 %{?akmod_install}
